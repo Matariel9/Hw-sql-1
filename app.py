@@ -18,9 +18,13 @@ def search_by_title(title):
     ORDER BY release_year DESC
     LIMIT 1
     """
-    res = connect(query)[0]
-    resp = {'title':res[0],'country':res[1],'release_year':res[2],'genre':res[3],'description':res[4]}
-    return jsonify(resp)
+    res = connect(query)
+    if(res == None):
+        res = res[0]
+        resp = {'title':res[0],'country':res[1],'release_year':res[2],'genre':res[3],'description':res[4]}
+        return jsonify(resp)
+    else:
+        return "Такого фильма нету.."
 
 @app.route('/year/<int:year1>-<int:year2>')
 def year_search(year1,year2):
