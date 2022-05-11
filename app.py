@@ -19,7 +19,7 @@ def search_by_title(title):
     LIMIT 1
     """
     res = connect(query)
-    if(res == None):
+    if(len(res) > 0):
         res = res[0]
         resp = {'title':res[0],'country':res[1],'release_year':res[2],'genre':res[3],'description':res[4]}
         return jsonify(resp)
